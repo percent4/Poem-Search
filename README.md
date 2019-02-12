@@ -23,7 +23,7 @@ web框架使用tornado, 后端数据库采用MongoDB, 诗词数据集使用爬�
 
 ![](https://github.com/percent4/Poem-Search/blob/master/%E8%AF%97%E6%AD%8C%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C.png)
 
-点击“查询词高亮”，则查询词部门会高亮显示。
+点击“查询词高亮”，则查询词部分会高亮显示。
 
 ### 总结
 
