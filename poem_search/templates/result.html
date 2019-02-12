@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+    <script>
+	//highlight query word in the page
+	function Func(){
+		var query = document.getElementById("query").innerHTML;
+		query = query.split('：')[1];
+		if(query == ''){alert('查询词为空!')}
+		else{
+		    document.getElementById("result").innerHTML = document.getElementById("result").innerHTML.replace(new RegExp(query,'g'),'<mark>'+query+'</mark>');
+		}
+	}
+	</script>
+</head>
+<body>
+<font color="red"><p id="query">查询词：{{query}}</p></font>
+<p>标题：{{title}}</p>
+<p>朝代：{{dynasty}}</p>
+<p>诗人：{{poet}}</p>
+<p id="result">内容：{{content}}</p>
+<a href="/query"><button type="button">返回</button></a>
+<button type="button" onclick="Func()">查询词高亮</button>
+</body>
