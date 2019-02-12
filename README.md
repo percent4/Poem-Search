@@ -15,7 +15,7 @@ web框架使用tornado, 后端数据库采用MongoDB, 诗词数据集使用爬�
 
 ### 使用示例
 
-&emsp;&emsp;运行server.py, 在浏览器中输入网址：http://localhost:8000/result ，界面如下：
+&emsp;&emsp;运行server.py, 在浏览器中输入网址：http://localhost:8000/query ，界面如下：
 
 ![](https://github.com/percent4/Poem-Search/blob/master/%E8%AF%97%E6%AD%8C%E6%90%9C%E7%B4%A2%E7%95%8C%E9%9D%A2.png)
 
