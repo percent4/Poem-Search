@@ -1,0 +1,29 @@
+version: "3.3"
+
+# 定义两个服务: poemSearch, mongo
+services:
+  poemSearch:
+    depends_on:
+      - mongo
+    image: jclian91/poem_search:v1.0_2019.02.20.1745
+    container_name: poemSearch
+    ports:
+      - "8000:8000"
+    restart: always
+    networks:
+      - poemSearch
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    networks:
+      - poemSearch
+    ports:
+      - "27017:27017"
+    volumes:
+      - $PWD/db:/data/db
+    command: ["mongod"]
+
+#Network
+networks:
+  poemSearch:

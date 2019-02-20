@@ -1,0 +1,52 @@
+FROM centos:7.5.1804
+
+# 维护者
+MAINTAINER jclian91@sina.com
+
+# 安装基础环境
+RUN yum clean all \
+    && yum makecache \
+    && yum update -y \
+	&& yum groupinstall -y "Development tools" \
+	&& yum install -y yum-utils \
+	&& yum install -y zlib-devel bzip2-devel openssl-devel ncurses-devel \
+	&& yum install -y sqlite-devel readline-devel tk-devel gdbm-devel \
+	&& yum install -y db4-devel libpcap-devel xz-devel \
+	&& yum install -y wget gcc gcc-c++ automake autoconf libtool make \
+        && yum install -y wget gcc gcc-c++ python-devel mysql-devel bzip2 \
+	&& yum install -y https://centos7.iuscommunity.org/ius-release.rpm \
+	&& yum install -y python36u \
+	&& yum install -y python36u-pip \
+	&& yum install -y python36u-devel \
+	&& yum clean all
+
+# 安装Python3.6
+RUN cd /usr/bin \
+    && mv python python_old \
+    && ln -s /usr/bin/python3.6 /usr/bin/python \
+    && ln -s /usr/bin/pip3.6 /usr/bin/pip \
+    && pip install --upgrade pip
+
+#环境变量硬编码及时区
+ENV ENVIRONMENT production
+RUN cd / && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+#安装Python的第三方模块
+RUN pip3 install pandas -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com \
+    && pip3 install pymongo -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com \
+    && pip3 install tornado -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com \
+    && pip3 install urllib3 -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com \
+    && pip3 install requests -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com \
+    && pip3 install bs4
+
+# 拷贝
+COPY ./src /root/poem_search/src
+
+# 工作目录
+WORKDIR /root/poem_search/src
+
+# 暴露端口
+EXPOSE 8000
+
+# 执行命令
+CMD ["python","server.py"]
