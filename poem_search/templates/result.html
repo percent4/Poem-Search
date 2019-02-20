@@ -16,11 +16,18 @@
 	</script>
 </head>
 <body>
+
 <font color="red"><p id="query">查询词：{{query}}</p></font>
-<p>标题：{{title}}</p>
-<p>朝代：{{dynasty}}</p>
-<p>诗人：{{poet}}</p>
-<p id="result">内容：{{content}}</p>
+<ol id="result">
+    {% for result in res %}
+        <li>
+        标题：{{result['title']}} <br>
+        朝代：{{result['dynasty']}} <br>
+            诗人：<a href={{"/poetIntro?poet="+result['poet']}}>{{result['poet']}} <br></a>
+        内容：{{result['content']}} <br><br><br>
+        </li>
+    {% end %}
+</ol>
 <a href="/query"><button type="button">返回</button></a>
 <button type="button" onclick="Func()">查询词高亮</button>
 </body>

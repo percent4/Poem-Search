@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>诗人介绍</title>
+</head>
+<body>
+    <h1>{{poet}}</h1>
+    <div id="intro" style="background-color:#FFD700;width:600px;float:left;">
+        {%for line in intro.split('*')%}
+            <p>{{line}}</p>
+        {% end %}
+    </div>
+    <div id="poet_image">
+        <img src={{image_src}}>
+    </div>
+    <p><a href="/query"><button type="button">返回</button></a></p>
+</body>
+</html>

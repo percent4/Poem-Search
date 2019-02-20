@@ -3,12 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Poem Query</title>
+    <script>
+	// click submit button
+	function Func(){
+		var query = document.getElementById("query").value;
+		if(query == ""){
+		    alert("查询词为空！");
+		}
+	}
+	</script>
 </head>
 <body>
 <h2>请输入查询</h2>
 <form method="post" action="/result">
-<p>包含文字: <input type="text" name="query_string"></p>
-<input type="submit">
+    <p>包含文字: <input id="query" type="text" name="query_string"></p>
+    <input onclick="Func()" type="submit">
 </form>
 </body>
 </html>
